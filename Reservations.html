@@ -73,3 +73,28 @@
             <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> </p>
           </div>
         </footer>
+				<script type="text/javascript">
+			    $("#search-btn").on("click", function() {
+			      var searchedCustomer = $("#customer-search").val().trim();
+
+			      // Using a RegEx Pattern to remove spaces from searchedCharacter
+			      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+			      searchedCustomer = searchedCustomer.replace(/\s+/g, "").toLowerCase();
+
+			      $.get("/api/" + searchedCustomer, function(data) {
+			        console.log(data);
+			        if (data) {
+			          $("#stats").show();
+			          $("#name").text(data.name);
+			          $("#pohne").text(data.phone);
+			          $("#email").text(data.email);
+			          $("#party-count").text(data.partyCount);
+								$("#unique-id").text(data.uniqueId);
+			        }
+			        else {
+			          $("#name").text("We will call your name as soon as you're up!");
+			          $("#stats").hide();
+			        }
+			      });
+			    });
+			  </script>
