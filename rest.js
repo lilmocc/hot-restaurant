@@ -27,11 +27,11 @@ app.get("/", function(req, res) {
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "Reservations.html"));
 });
 
-app.get("/table", function(req, res) {
-  res.sendFile(path.join(__dirname, "table.html"));
+app.get("/tables", function(req, res) {
+  res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 // Search for Specific Character (or all characters) - provides JSON
