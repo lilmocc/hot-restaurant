@@ -20,7 +20,7 @@
 
 			<div class="text-center">
 				<a href="/tables"><button type="button" class="btn btn-lg btn-primary">View Tables</button></a>
-				<a href="/"><button type="button" class="btn btn-lg btn-default">Home</button></a>
+				<a href=""><button type="button" class="btn btn-lg btn-default">Home</button></a>
 			</div>
 		</div>
 
@@ -74,27 +74,24 @@
           </div>
         </footer>
 				<script type="text/javascript">
-			    $("#search-btn").on("click", function() {
-			      var searchedCustomer = $("#customer-search").val().trim();
+		    // Question: What does this code do?
+				    $(".submit").on("click", function(event) {
+				      event.preventDefault();
+				      var newCharacter = {
+				        name: $("#reserve_name").val().trim(),
+				        phone: $("#reserve_phone").val().trim(),
+				        email: $("#reserve_email").val().trim(),
+				        partyCount: $("#reserve_party").val().trim(),
+				        uniqueId: $("#reserve_uniqueID").val().trim()
+				      };
+				      console.log(newCharacter);
 
-			      // Using a RegEx Pattern to remove spaces from searchedCharacter
-			      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-			      searchedCustomer = searchedCustomer.replace(/\s+/g, "").toLowerCase();
-
-			      $.get("/api/" + searchedCustomer, function(data) {
-			        console.log(data);
-			        if (data) {
-			          $("#stats").show();
-			          $("#name").text(data.name);
-			          $("#pohne").text(data.phone);
-			          $("#email").text(data.email);
-			          $("#party-count").text(data.partyCount);
-								$("#unique-id").text(data.uniqueId);
-			        }
-			        else {
-			          $("#name").text("We will call your name as soon as you're up!");
-			          $("#stats").hide();
-			        }
-			      });
-			    });
+				      // Question: What does this code do??
+				      $.post("/api/new", newCharacter)
+				      .then(function(data) {
+				        console.log(data);
+				        alert("Adding character...");
+				      });
+				    });
 			  </script>
+

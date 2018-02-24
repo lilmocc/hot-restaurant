@@ -27,25 +27,28 @@ app.get("/", function(req, res) {
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "Reservations.html"));
 });
 
 app.get("/table", function(req, res) {
-  res.sendFile(path.join(__dirname, "table.html"));
+  res.sendFile(path.join(__dirname, "tables.html"));
 });
 
 // Search for Specific Character (or all characters) - provides JSON
 app.get("/api/:selection?", function(req, res) {
   var chosen = req.params.selection;
 
-  if (chosen) {
-    console.log(reservations);
+
+  if (chosen.length<=5) {
+    // console.log(reservations);
+    reservations.push(chosen[-1]);
 
 
   }
 
-  else if (chosen) {
-    console.log(waitist);
+  else if (chosen.length>5) {
+    // console.log(waitist);
+    waitlist.push(chosen[-1]);
 
 
   }
