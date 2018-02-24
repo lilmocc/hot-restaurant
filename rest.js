@@ -35,21 +35,21 @@ app.get("/table", function(req, res) {
 });
 
 // Search for Specific Character (or all characters) - provides JSON
-app.get("/api/:characters?", function(req, res) {
-  var chosen = req.params.characters;
+app.get("/api/:selection?", function(req, res) {
+  var chosen = req.params.selection;
 
   if (chosen) {
-    console.log(chosen);
+    console.log(reservations);
 
-    for (var i = 0; i < characters.length; i++) {
-      if (chosen === characters[i].routeName) {
-        return res.json(characters[i]);
-      }
-    }
 
-    return res.json(false);
   }
-  return res.json(characters);
+
+  else if (chosen) {
+    console.log(waitist);
+
+
+  }
+
 });
 
 // Create New Characters - takes in JSON input
@@ -71,5 +71,5 @@ app.post("/api/new", function(req, res) {
 // Starts the server to begin listening
 // =============================================================
 app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+  console.log("App listening on PORT Andre" + PORT);
 });
