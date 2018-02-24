@@ -30,7 +30,9 @@ app.get("/reserve", function(req, res) {
   res.sendFile(path.join(__dirname, "Reservations.html"));
 });
 
+
 app.get("/tables", function(req, res) {
+
   res.sendFile(path.join(__dirname, "tables.html"));
 });
 
@@ -38,14 +40,17 @@ app.get("/tables", function(req, res) {
 app.get("/api/:selection?", function(req, res) {
   var chosen = req.params.selection;
 
-  if (chosen) {
-    console.log(reservations);
+
+  if (chosen.length<=5) {
+    // console.log(reservations);
+    reservations.push(chosen[-1]);
 
 
   }
 
-  else if (chosen) {
-    console.log(waitist);
+  else if (chosen.length>5) {
+    // console.log(waitist);
+    waitlist.push(chosen[-1]);
 
 
   }
