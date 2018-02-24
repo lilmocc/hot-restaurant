@@ -1,100 +1,81 @@
 <html lang="en"><head>
-	<meta charset="UTF-8">
-	<title>Reservation Page</title>
-
-	<!-- Latest compiled and minified CSS & JS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+    <meta charset="UTF-8">
+    <title>Reservation Page</title>
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </head>
 <body>
-
-	<div class="container">
-
-		<div class="jumbotron">
-			<h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
-			<hr>
-			<h2 class="text-center">Make your reservation</h2>
-			<br>
-
-			<div class="text-center">
-				<a href="/tables"><button type="button" class="btn btn-lg btn-primary">View Tables</button></a>
-				<a href="/"><button type="button" class="btn btn-lg btn-default">Home</button></a>
-			</div>
-		</div>
-
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center"><span class="glyphicon glyphicon-fire"></span> Hot Restaurant</h1>
+            <hr>
+            <h2 class="text-center">Make your reservation</h2>
+            <br>
+            <div class="text-center">
+                <a href="/tables"><button type="button" class="btn btn-lg btn-primary">View Tables</button></a>
+                <a href="/"><button type="button" class="btn btn-lg btn-default">Home</button></a>
+            </div>
+        </div>
     <div class="row">
-    			<div class="col-lg-12">
-
-    				<!-- Reservation Page -->
-    				<div class="panel panel-default">
-    					<div class="panel-heading">
-    						<h4 class="panel-title">Table Reservation</h4>
-    					</div>
-    					<div class="panel-body">
-
-    						<form role="form" lpformnum="1">
-
-    							<div class="form-group">
-    								<label for="reserve_name">Name</label>
-    								<input type="text" class="form-control" id="reserve_name" name="name");>
-    							</div>
-
-    							<div class="form-group">
-    								<label for="reserve_phone">Phone Number</label>
-    								<input type="text" class="form-control" id="reserve_phone" name="phone">
-    							</div>
-
-    							<div class="form-group">
-    								<label for="reserve_email">Email</label>
-    								<input type="text" class="form-control" id="reserve_email" name="email">
-    							</div>
-
+                <div class="col-lg-12">
+                    <!-- Reservation Page -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Table Reservation</h4>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" lpformnum="1">
+                                <div class="form-group">
+                                    <label for="reserve_name">Name</label>
+                                    <input type="text" class="form-control" id="reserve_name" name="name");>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reserve_phone">Phone Number</label>
+                                    <input type="text" class="form-control" id="reserve_phone" name="phone">
+                                </div>
+                                <div class="form-group">
+                                    <label for="reserve_email">Email</label>
+                                    <input type="text" class="form-control" id="reserve_email" name="email">
+                                </div>
                   <div class="form-group">
                     <label for="reserve_party">How Many People in your party?</label>
                     <input type="integer" class="form-control" id="reserve_party" name="party">
                   </div>
-
                   <div class="form-group">
                     <label for="reserve_uniqueID">Unique ID</label>
                     <input type="text" class="form-control" id="reserve_uniqueID" name="id">
                   </div>
-
                   <button type="submit" class="btn btn-primary submit">Submit</button>
                 </form>
               </div>
             </div>
           </div>
         </div>
-
         <footer class="footer">
           <div class="container">
             <p><a href="/api/tables">API Table Link</a> | <a href="/api/waitlist">API Wait List</a> </p>
           </div>
         </footer>
-				<script type="text/javascript">
-			    $("#search-btn").on("click", function() {
-			      var searchedCustomer = $("#customer-search").val().trim();
-
-			      // Using a RegEx Pattern to remove spaces from searchedCharacter
-			      // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-			      searchedCustomer = searchedCustomer.replace(/\s+/g, "").toLowerCase();
-
-			      $.get("/api/" + searchedCustomer, function(data) {
-			        console.log(data);
-			        if (data) {
-			          $("#stats").show();
-			          $("#name").text(data.name);
-			          $("#pohne").text(data.phone);
-			          $("#email").text(data.email);
-			          $("#party-count").text(data.partyCount);
-								$("#unique-id").text(data.uniqueId);
-			        }
-			        else {
-			          $("#name").text("We will call your name as soon as you're up!");
-			          $("#stats").hide();
-			        }
-			      });
-			    });
-			  </script>
+                <script type="text/javascript">
+            // Question: What does this code do?
+                    $(".submit").on("click", function(event) {
+                      event.preventDefault();
+                      var newCharacter = {
+                        name: $("#reserve_name").val().trim(),
+                        phone: $("#reserve_phone").val().trim(),
+                        email: $("#reserve_email").val().trim(),
+                        partyCount: $("#reserve_party").val().trim(),
+                        uniqueId: $("#reserve_uniqueID").val().trim()
+                      };
+                      console.log(newCharacter);
+                      // Question: What does this code do??
+                      $.post("/api/new", newCharacter)
+                      .then(function(data) {
+                        console.log(data);
+                        alert("Adding character...");
+                      });
+                    });
+              </script>
+</body>
